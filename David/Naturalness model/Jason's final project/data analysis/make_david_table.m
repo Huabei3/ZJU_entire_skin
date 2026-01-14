@@ -4,16 +4,15 @@
 % - Export: res/separate_skin/resTable/Skin_table.mat/.xlsx
 
 clc; clear; close all;
-
 % I/O
-src_folder = fullfile("res","separate_skin","fitRes");
+src_folder = fullfile("res","separate_skin_methods","fitRes","ellipsoidfit4");
 asian_file = fullfile(src_folder,"asian_skin.mat");
 cauc_file  = fullfile(src_folder,"caucasian_skin.mat");
-skin_file=fullfile("res\fitRes")
+skin_file=fullfile("res\fitRes");
 output_folder = fullfile("res","separate_skin","resTable");
 if ~exist(output_folder,"dir"), mkdir(output_folder); end
-out_mat  = fullfile(output_folder, "Skin_table.mat");
-out_xlsx = fullfile(output_folder, "Skin_table.xlsx");
+out_mat  = fullfile(output_folder, "David_table.mat");
+out_xlsx = fullfile(output_folder, "David_table.xlsx");
 
 % Constants
 fit_equation_str = "y = 1./(1+exp(p(1)*sqrt((L-p(5)).^2 + p(2)*(a-p(6)).^2 + p(3)*(b-p(7)).^2 + p(4)*(a-p(6)).*(b-p(7))) - p(8)));";
@@ -84,20 +83,6 @@ function cols = append_from_file(S, default_ethnicity, cols, fit_equation_str, D
     n_rows = size(S.labNscore,1);
     if n_rows==0, return; end
 
-    % Per-row par
-    if isfield(S,'par_all') && ~isempty(S.par_all)
-        par_rows = S.par_all;
-    elseif isfield(S,'par') && ~isempty(S.par)
-        if size(S.par,1)==1
-            par_rows = repmat(S.par, n_rows, 1);
-            warning('Using single par replicated to %d rows (no par_all in file).', n_rows);
-        else
-            par_rows = S.par;
-        end
-    else
-        par_rows = nan(n_rows,8);
-        warning('No par/par_all found; filling NaNs.');
-    end
 
     % Ethnicity map
     function e = map_eth(s)
@@ -113,19 +98,8 @@ function cols = append_from_file(S, default_ethnicity, cols, fit_equation_str, D
         sc   = S.labNscore{r,2};   % Nx1
         tag3 = S.labNscore{r,3};   % 'asian skin' / 'caucasian skin'
         tag4 = S.labNscore{r,4};   % 'skin_%d'
-        p    = par_rows(r,:);
-
-        % lab_center = [mean(L*), a0, b0]
-        if ~isempty(labs)
-            avg_lab=labs(1,:);
-        else
-            Lmean = NaN;
-            avg_lab = [NaN NaN NaN];
-        end
-        a0 = NaN; b0 = NaN;
-        if numel(p) >= 7
-            a0 = p(6); b0 = p(7);
-        end
+        p    = S.par_all(r,:);
+        avg_lab=S.labNscore{r,1}(1,:);
 
         % gender by last digit in 'skin_%d'
         if isstring(tag4), t4 = char(tag4); else, t4 = tag4; end
@@ -145,7 +119,7 @@ function cols = append_from_file(S, default_ethnicity, cols, fit_equation_str, D
         cols.opinion_scores{row,1}      = sc;
         cols.par{row,1}                 = p;
         cols.fit_equation{row,1}        = fit_equation_str;
-        cols.lab_center{row,1}          = [Lmean, a0, b0];
+        cols.lab_center{row,1}          = p(1,5:7);
         cols.average_lab{row,1}         = avg_lab;
         cols.cct{row,1}                 = 5000;
         cols.illuminance{row,1}         = 500;
