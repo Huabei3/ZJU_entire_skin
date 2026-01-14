@@ -1,0 +1,76 @@
+load naturalness1;
+load skylab;
+load skinlab;
+load grasslab;
+% sky
+templab = [];
+tempn = [];
+for i = 1:10
+    templab = [templab;skylab((i-1)*49+1:(i-1)*49+49,:)];
+    tempn = [tempn;naturalness1((i-1)*49+1:(i-1)*49+49,:)];
+    
+end
+[par(1,:),r(1,:)] = ellipsoidfit6(templab,tempn);
+LCh(1,:) = [par(1,1),sqrt(par(1,2).^2+par(1,3).^2),hue_angle_degree(par(1,2),par(1,3))] ;
+% shape(1,:) = calculate_ellipse_shape(par(1,:));
+
+
+% spring grass
+templab = [];
+tempn = [];
+for i = 1:10
+    templab = [templab;grasslab((i-1)*49+1:(i-1)*49+49,:)];
+    tempn = [tempn;naturalness1(490+(i-1)*49+1:490+(i-1)*49+49,:)];
+    
+end
+[par(2,:),r(2,:)] = ellipsoidfit6(templab,tempn);
+LCh(2,:) = [par(2,1),sqrt(par(2,2).^2+par(2,3).^2),hue_angle_degree(par(2,2),par(2,3))] ;
+% shape(2,:) = calculate_ellipse_shape(par(2,:));
+
+% autumn grass
+templab = [];
+tempn = [];
+for i = 1:10
+    templab = [templab;grasslab((i-1)*49+1:(i-1)*49+49,:)];
+    tempn = [tempn;naturalness1(1470+(i-1)*49+1:1470+(i-1)*49+49,:)];
+    
+end
+[par(3,:),r(3,:)] = ellipsoidfit6(templab,tempn,[48.64,-0.26,41.36]);
+LCh(3,:) = [par(3,1),sqrt(par(3,2).^2+par(3,3).^2),hue_angle_degree(par(3,2),par(3,3))] ;
+% shape(3,:) = calculate_ellipse_shape(par(3,:));
+
+
+% asian skin
+templab = [];
+tempn = [];
+
+for i = [1 5 7 9 10]
+    templab = [templab;skinlab((i-1)*49+1:(i-1)*49+49,:)];
+    tempn = [tempn;naturalness1(980+(i-1)*49+1:980+(i-1)*49+49,:)];
+    
+end
+[par(4,:),r(4,:)] = ellipsoidfit6(templab,tempn,[65.74,19.93,18.09]);
+LCh(4,:) = [par(4,1),sqrt(par(4,2).^2+par(4,3).^2),hue_angle_degree(par(4,2),par(4,3))] ;
+% shape(4,:) = calculate_ellipse_shape(par(4,:));
+
+% caucasian skin
+templab = [];
+tempn = [];
+
+for i = [2 3 4 6 8]
+    templab = [templab;skinlab((i-1)*49+1:(i-1)*49+49,:)];
+    tempn = [tempn;naturalness1(980+(i-1)*49+1:980+(i-1)*49+49,:)];
+    
+end
+[par(5,:),r(5,:)] = ellipsoidfit6(templab,tempn,[65.21,21.43,23.75]);
+LCh(5,:) = [par(5,1),sqrt(par(5,2).^2+par(5,3).^2),hue_angle_degree(par(5,2),par(5,3))] ;
+% shape(5,:) = calculate_ellipse_shape(par(5,:));
+
+
+
+
+
+% ellipse_atr = [LCh,shape,r];
+
+% save ellipsoidmodel par;
+% save ellipse_atr ellipse_atr;
