@@ -1,0 +1,12 @@
+load('prf_lab_0124.mat');
+de(1,2)=mean(decielab(leeds,zju));
+de(1,3)=mean(decielab(leeds,uk));
+de(1,4)=mean(decielab(leeds,pk));
+de(1,5)=mean(decielab(leeds,af));
+de(2,3)=mean(decielab(zju,uk));
+de(2,4)=mean(decielab(zju,pk));
+de(2,5)=mean(decielab(zju,af));
+de(3,4)=mean(decielab(uk,pk));
+de(3,5)=mean(decielab(uk,af));
+de(4,5)=mean(decielab(pk,af));
+de(2,1)=d(1,2)

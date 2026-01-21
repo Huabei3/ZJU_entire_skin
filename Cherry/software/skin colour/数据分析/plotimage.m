@@ -1,0 +1,16 @@
+plot(result(1,1),result(1,2),'b-o','MarkerSize',10);
+plot(result(2,1),result(2,2),'r-o','MarkerSize',10);
+plot(result(3,1),result(3,2),'m-o','MarkerSize',10);
+plot(result(4,1),result(4,2),'g-o','MarkerSize',10);
+plot(result(5,1),result(5,2),'c-o','MarkerSize',10);
+plot(result(6,1),result(6,2),'b-^','MarkerSize',10);
+plot(result(7,1),result(7,2),'r-^','MarkerSize',10);
+plot(result(8,1),result(8,2),'m-^','MarkerSize',10);
+plot(result(9,1),result(9,2),'g-^','MarkerSize',10);
+plot(result(10,1),result(10,2),'c-^','MarkerSize',10);
+plot(result(11,1),result(11,2),'b-X','MarkerSize',10);
+plot(result(12,1),result(12,2),'r-X','MarkerSize',10);
+plot(result(13,1),result(13,2),'c-X','MarkerSize',10);
+plot(result(14,1),result(14,2),'b-s','MarkerSize',10);
+plot(result(15,1),result(15,2),'r-s','MarkerSize',10);
+plot(result(16,1),result(16,2),'g-s','MarkerSize',10);

@@ -1,0 +1,34 @@
+a=imread('C:\Users\Administrato\Desktop\02.jpg');
+path_in='C:\Users\Administrato\Desktop\';
+R=a(:,:,1);
+G=a(:,:,2);
+B=a(:,:,3);
+X=0.607*R+0.174*G+0.201*B;
+Y=0.299*R+0.587*G+0.114*B;
+Z=0.000*R+0.066*G+1.117*B;
+b(:,:,1)=X;
+b(:,:,2)=Y;
+b(:,:,3)=Z;
+% c=im2double(reshape(b,40000,3));
+La=20;
+XYZwA=[95.04,100.00,108.88];
+XYZwB=[131.448333897317,100,29.0781068392545];
+i1=1;
+CCT=1500+500*i1;
+i2=1;
+Duv=-0.015+0.005*i2;
+q=CCT+Duv*1000;
+j=5*i1+i2-5;
+XYZwB(j,:)=CCT2xyz(CCT,Duv);
+figure;
+      for i=1:40000
+ e(i,:)=ciecat02(c(i,:),XYZwA,XYZwB(j,:));
+      end
+g(:,1)=1.910*e(:,1)-0.532*e(i,2)-0.288*e(i,3);
+g(:,2)=-0.985*e(:,1)+1.999*e(i,2)-0.028*e(i,3);
+g(:,3)=0.058*e(:,1)-0.118*e(i,2)+0.898*e(i,3);
+f=(reshape(g,200,200,3));
+h=imshow(f);
+%saveas(gca,[path_in,num2str(q)],'jpg')
+saveas(gca,[path_in,num2str(i2)],'jpg')
+close;

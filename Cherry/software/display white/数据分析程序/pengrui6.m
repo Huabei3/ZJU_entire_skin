@@ -1,0 +1,20 @@
+function yy=pengrui6(g,s) 
+u=s(:,1);
+v=s(:,2);
+L=s(:,3);
+% yy=beta(1)*(x3.^2)+beta(2)*(x2.^3)+beta(3)*(x3.^3)+beta(4)*(x4.^3);
+% yy=b(1)+b(2)*log(x1)+b(3)*log(x2)+b(4)*log(x3)+b(5)*log(x4);%77
+% yy=beta(1)+beta(2)*(x1).^(-1)+beta(3)*(x2).^(-1)+beta(4)*(x3).^(-1)+beta(5)*(x4).^(-1);
+% yy=beta(1)+beta(2)*(x1).^(-1)+beta(3)*(x2).^(-1)+beta(4)*log(x3)+beta(5)*log(x4);
+% yy=beta(1)+beta(2)*(x1).^0.5+beta(3)*(x2).^0.5+beta(4)*(x3).^(-1)+beta(5)*(x4).^(-1);
+% yy=b(1)+b(2)*(x1).^0.5+b(3)*(x2).^0.5+b(4)*log(x3)+b(5)*log(x4);
+% yy=beta(1)+beta(2)*log(x1)+beta(3)*log(x2)+beta(4)*(x3).^0.5+beta(5)*(x4).^2;
+% yy=beta(1)+beta(2)*log2(x1)+beta(3)*log2(x2)+beta(4)*log2(x3)+beta(5)*log2(x4);
+% yy=beta(1)+beta(2)*exp(beta(3).*x1) +beta(4)*exp(beta(5).*x2)+beta(6)*exp(beta(7).*x3)+beta(8)*exp(beta(9).*x4);
+% yy=b(1)+b(2)*e.^x1+b(3)*x1+b(4)*x2.^2+b(5)*x2+b(6)*x3.^2+b(7)*x3+b(8)*x4.^2+b(9)*x4;
+% yy=b(1)+b(2)*x4.^2+b(3)*x4;
+% yy=b(1)+b(2)*x3.^2+b(3)*x3+b(4)*x4.^2+b(5)*x4;
+% yy=b(1)+b(2)*log(x3)+b(3)*log(x4);
+% yy=b(1)+b(2)*(x3)+b(3)*x4;
+yy=(g(1).*u.*u+g(2).*u.*v+g(3).*v.*v+g(4).*u+g(5).*v+g(6)).*log(L);
+end

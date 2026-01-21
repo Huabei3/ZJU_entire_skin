@@ -1,0 +1,32 @@
+ load('result9lab.mat');
+xyz=lab2xyz(a,'user',[321.7,346.3,375.8]);
+d0=[1,1,1,1,1,1,1,1]';
+d1=1-1./3.6.*exp((-b(:,1)-42)./92);
+d2=0.723.*(1-1116./b(:,2)+8.46.*b(:,3)-49266.*b(:,3)./b(:,2));
+d3=28.*b(:,7).^2-30.19.*b(:,8).^2-24.11.*b(:,7).*b(:,8)-1.78.*b(:,7)+32.58.*b(:,8)-6.52;
+d4=0.11.*0.723.*(1-1116./b(:,2)+8.46.*b(:,3)-49266.*b(:,3)./b(:,2));
+d5=0.424.*(1-2383./b(:,2));
+
+for i=1:8
+cat0(i,:)=ciecat02_d(xyz(i,:),b(i,4:6),[306.6,315.6,351],'CAT16',b(i,1),315.6,d0(i,1));
+cat1(i,:)=ciecat02_d(xyz(i,:),b(i,4:6),[306.6,315.6,351],'CAT16',b(i,1),315.6,d1(i,1));
+cat2(i,:)=ciecat02_d(xyz(i,:),b(i,4:6),[306.6,315.6,351],'CAT16',b(i,1),315.6,d2(i,1));
+cat3(i,:)=ciecat02_d(xyz(i,:),b(i,4:6),[306.6,315.6,351],'CAT16',b(i,1),315.6,d3(i,1));
+cat4(i,:)=ciecat02_d(xyz(i,:),b(i,4:6),[306.6,315.6,351],'CAT16',b(i,1),315.6,d4(i,1));
+cat5(i,:)=ciecat02_d(xyz(i,:),b(i,4:6),[306.6,315.6,351],'CAT16',b(i,1),315.6,d5(i,1));
+end
+lab0=xyz2lab(cat0,'user',[321.7,346.3,375.8]);
+lab1=xyz2lab(cat1,'user',[321.7,346.3,375.8]);
+lab2=xyz2lab(cat2,'user',[321.7,346.3,375.8]);
+lab3=xyz2lab(cat3,'user',[321.7,346.3,375.8]);
+lab4=xyz2lab(cat4,'user',[321.7,346.3,375.8]);
+lab5=xyz2lab(cat5,'user',[321.7,346.3,375.8]);
+de0=cielabde(lab,lab0);
+de1=cielabde(lab,lab1);
+de2=cielabde(lab,lab2);
+de3=cielabde(lab,lab3);
+de4=cielabde(lab,lab4);
+de5=cielabde(lab,lab5);
+de=[de0,de1,de2,de3,de4,de5];
+dee=mean(de);
+d=[d0,d1,d2,d3,d4,d5];

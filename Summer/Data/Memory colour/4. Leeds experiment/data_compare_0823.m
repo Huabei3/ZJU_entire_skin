@@ -1,0 +1,57 @@
+clear all
+load('data_compare_0929.mat');
+% (prefernce)   a1~a7: CH_leeds, CH_ZJU, UK, PK, AF,CHZ2020,CHZ2021
+% (naturalness) b1~b7: CH_leeds, CH_ZJU, UK, PK, AF,CHZ2020,CHZ2021
+% a2=a7;b2=b7;
+% a=[a1;a2;a3;a4;a5];b=[b1;b2;b3;b4;b5];
+% de(:,1)=cielabde(a1,b1);
+% de(:,2)=cielabde(a2,b2);
+% de(:,3)=cielabde(a3,b3);
+% de(:,4)=cielabde(a4,b4);
+% de(:,5)=cielabde(a5,b5);
+% de(:,6)=mean(de')';
+% de(25,:)=mean(de);
+% de(25,6)=mean(cielabde(a,b));
+% a1=b1;a2=b2;a3=b3;a4=b4;a5=b5;
+a1(:,4)=atan(a1(:,3)./a1(:,2))./pi.*180;
+a2(:,4)=atan(a2(:,3)./a2(:,2))./pi.*180;
+a3(:,4)=atan(a3(:,3)./a3(:,2))./pi.*180;
+a4(:,4)=atan(a4(:,3)./a4(:,2))./pi.*180;
+a5(:,4)=atan(a5(:,3)./a5(:,2))./pi.*180;
+a6(:,4)=atan(a6(:,3)./a6(:,2))./pi.*180;
+a7(:,4)=atan(a7(:,3)./a7(:,2))./pi.*180;
+dd(:,1)=(a1(:,4)-a2(:,4));
+dd(:,2)=(a1(:,4)-a3(:,4));
+dd(:,3)=(a1(:,4)-a4(:,4));
+dd(:,4)=(a1(:,4)-a5(:,4));
+dd(:,5)=(a2(:,4)-a3(:,4));
+dd(:,6)=(a2(:,4)-a4(:,4));
+dd(:,7)=(a2(:,4)-a5(:,4));
+dd(:,8)=(a3(:,4)-a4(:,4));
+dd(:,9)=(a3(:,4)-a5(:,4));
+dd(:,10)=(a4(:,4)-a5(:,4));
+dd(25,:)=mean(dd);
+dd(:,11)=mean(dd')';
+% dd(:,1)=cielabde(a1,a2);
+% dd(:,2)=cielabde(a1,a3);
+% dd(:,3)=cielabde(a1,a4);
+% dd(:,4)=cielabde(a1,a5);
+% dd(:,5)=cielabde(a2,a3);
+% dd(:,6)=cielabde(a2,a4);
+% dd(:,7)=cielabde(a2,a5);
+% dd(:,8)=cielabde(a3,a4);
+% dd(:,9)=cielabde(a3,a5);
+% dd(:,10)=cielabde(a4,a5);
+% dd(25,:)=mean(dd);
+% 
+% dd(:,1)=cielabde(b1,b2);
+% dd(:,2)=cielabde(b1,b3);
+% dd(:,3)=cielabde(b1,b4);
+% dd(:,4)=cielabde(b1,b5);
+% dd(:,5)=cielabde(b2,b3);
+% dd(:,6)=cielabde(b2,b4);
+% dd(:,7)=cielabde(b2,b5);
+% dd(:,8)=cielabde(b3,b4);
+% dd(:,9)=cielabde(b3,b5);
+% dd(:,10)=cielabde(b4,b5);
+% dd(25,:)=mean(dd);
