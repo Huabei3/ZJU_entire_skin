@@ -1,0 +1,43 @@
+# # Ignore everything by default at repo root
+# /*
+
+# # Keep this ignore file
+# !.gitignore
+
+# # Start by re-including the parent chain, then re-ignoring and whitelisting only target path
+# !/David/
+# /David/*
+# !/David/Naturalness model/
+# /David/Naturalness model/*
+# !/David/Naturalness model/Jason's final project/
+# /David/Naturalness model/Jason's final project/*
+# !/David/Naturalness model/Jason's final project/data analysis/
+# !/David/Naturalness model/Jason's final project/data analysis/**
+
+
+
+# # 1. 默认忽略根目录下所有文件和目录（基础规则）
+# /*
+
+# # 2. 保留 .gitignore 文件本身
+# !.gitignore
+
+# # 3. 先放行所有子目录（否则 Git 无法进入子目录查找 .m 文件）
+# !/**/
+
+# # 4. 放行所有目录下的 .m 文件（递归匹配所有层级）
+# !/**/*.m
+
+
+# 忽略所有文件
+*
+
+# 但保留目录结构
+!*/
+
+# 只跟踪 .gitignore 本身
+!.gitignore
+
+# 只跟踪 .m 文件（任何目录）
+!*.m
+!**/*.m
